@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-
-
 import { colors } from './colors';
 import { sizing } from './page';
 
@@ -19,7 +17,7 @@ export default StyleSheet.create({
         fontSize: 24,
         lineHeight: 29,
         color: colors.black,
-        marginBottom: sizing.baseLine * 2,
+        marginBottom: sizing.baseLine,
     },
 
     header3: {

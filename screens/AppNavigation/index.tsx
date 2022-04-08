@@ -3,12 +3,11 @@ import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-nav
 
 import { Ionicons } from "@expo/vector-icons";
 
-import { Collection } from './Collection';
-import { Calendar } from './Calendar';
-import { Settings } from './Settings';
+import Collection from '../Collection/index';
+import Calendar from '../Calendar/Calendar';
+import { Account } from "../Account/Account";
 
 import { colors } from "../../styles/colors";
-
 
 //Maak navigator
 const bottomTab = createBottomTabNavigator();
@@ -43,12 +42,12 @@ const screenOptions = ({ route }: { route: RouteProp<ParamListBase> }) : BottomT
     },
 })
 
-export const MainDrawer = () => {
+export default () => {
         return (
             <bottomTab.Navigator screenOptions={screenOptions}>
                 <bottomTab.Screen name="Collection" component={Collection}/>
                 <bottomTab.Screen name="Calendar" component={Calendar}/>
-                <bottomTab.Screen name="Account" component={Settings}/>
+                <bottomTab.Screen name="Account" component={Account}/>
             </bottomTab.Navigator>
     )
 }

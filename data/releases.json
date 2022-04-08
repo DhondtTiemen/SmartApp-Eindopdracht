@@ -1,0 +1,24 @@
+[
+    {
+        "id": "abc123",
+        "brand": "Adidas",
+        "name": "Lego x Adidas ZX 8000 A-ZX Series",
+        "url": "https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/60184c7f2c2b925bdf9086f5c3b08910_1600721231.jpg",
+        "releaseDate": "8 april 2022",
+        "price": 130,
+        "inCollection": true,
+        "reminder": false
+
+    },
+    {
+        "id": "def456",
+        "brand": "Nike",
+        "name": "Off white x blazor low 'White university red'",
+        "price": 139.99,
+        "url": "https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/f03f4d4bd86068a4f0b482d2248bfb98_1648648286.jpeg",
+        "releaseDate": "8 april 2022",
+        "inCollection": false,
+        "reminder": true
+
+    }
+]

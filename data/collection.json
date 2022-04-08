@@ -1,0 +1,24 @@
+[
+    {
+        "id": "abc123",
+        "brand": "Adidas",
+        "name": "Yeezy Boost 350 V2 'Static'",
+        "url": "https://sneakernews.com/wp-content/uploads/2018/12/adidas-yeezy-boost-350-EF2905-1.jpg",
+        "releaseDate": "27 december 2018",
+        "price": 220,
+        "inCollection": true,
+        "reminder": false
+
+    },
+    {
+        "id": "def456",
+        "brand": "Nike",
+        "name": "Air Max 1 'Sketch To Shelf'",
+        "price": 139.99,
+        "url": "https://sneakernews.com/wp-content/uploads/2019/07/nike-air-max-1-sketch-to-shelf-cj4286-101-4.jpg",
+        "releaseDate": "13 july 2019",
+        "inCollection": true,
+        "reminder": true
+
+    }
+]

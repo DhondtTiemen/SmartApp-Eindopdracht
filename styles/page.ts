@@ -3,5 +3,5 @@ export const sizing = {
 }
 
 export const page = {
-    padding: sizing.baseLine * 3,
+    marginHorizontal: sizing.baseLine * 3,
 }

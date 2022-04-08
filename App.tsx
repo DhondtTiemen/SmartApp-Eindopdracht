@@ -15,7 +15,7 @@ import {
   OpenSans_400Regular,
 } from '@expo-google-fonts/open-sans';
 
-import { MainDrawer } from './screens/MainDrawer';
+import AppNavigation from './screens/AppNavigation';
 
 export default function App() {
   const [fontsLoaded, error] = useFonts({
@@ -32,7 +32,7 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <NavigationContainer>
-          <MainDrawer />
+          <AppNavigation />
         </NavigationContainer>
       </SafeAreaProvider>
     );
