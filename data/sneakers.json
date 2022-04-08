@@ -1,0 +1,12 @@
+[
+    {
+        "id": "abc123",
+        "brand": "Adidas",
+        "name": "Yeezy 350 V2 Boost"
+    },
+    {
+        "id": "def456",
+        "brand": "Nike",
+        "name": "Air Force One"
+    }
+]
