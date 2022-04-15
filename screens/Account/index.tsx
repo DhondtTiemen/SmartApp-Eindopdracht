@@ -1,9 +1,7 @@
 import { createStackNavigator, StackNavigationOptions } from "@react-navigation/stack"
-
-import Calendar from "./Calendar"
-import { DetailRelease } from "./Detail"
-
 import { colors } from "../../styles/colors"
+import Account from "./Account"
+import { Settings } from "./Settings"
 
 export default () => {
     const Stack = createStackNavigator()
@@ -18,8 +16,9 @@ export default () => {
 
     return (
         <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="Calendar" component={Calendar}/>
-            <Stack.Screen name="Detailrelease" component={DetailRelease}/>
+            <Stack.Screen name="Account" component={Account}/>
+            <Stack.Screen name="Settings" component={Settings}/>
         </Stack.Navigator>
     )
+
 }

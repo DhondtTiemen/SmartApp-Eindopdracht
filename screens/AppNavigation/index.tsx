@@ -4,14 +4,15 @@ import { BottomTabNavigationOptions, createBottomTabNavigator } from "@react-nav
 import { Ionicons } from "@expo/vector-icons";
 
 import Collection from '../Collection/index';
-import Calendar from '../Calendar/Calendar';
-import { Account } from "../Account/Account";
+import Calendar from '../Calendar/index';
+import Account from "../Account/index";
 
 import { colors } from "../../styles/colors";
 
 //Maak navigator
 const bottomTab = createBottomTabNavigator();
 
+//Stijlen van de navigatie
 const screenOptions = ({ route }: { route: RouteProp<ParamListBase> }) : BottomTabNavigationOptions => ({
     //Geef elke bottomtab screen een andere icon
     tabBarIcon: ({
@@ -24,7 +25,7 @@ const screenOptions = ({ route }: { route: RouteProp<ParamListBase> }) : BottomT
         size: number
     }) => {
         if (route.name == 'Collection')
-            return <Ionicons color={color} name="clipboard" size={size}/>
+            return <Ionicons color={color} name="albums" size={size}/>
 
         if (route.name == 'Calendar')
             return <Ionicons color={color} name="calendar" size={size}/>
@@ -32,14 +33,17 @@ const screenOptions = ({ route }: { route: RouteProp<ParamListBase> }) : BottomT
         if (route.name == 'Account')
             return <Ionicons color={color} name="person" size={size}/>
     },
-
-    tabBarActiveTintColor: colors.alpha,
-    tabBarInactiveTintColor: colors.gray,
-
+    
+    //Stijl de header
     headerTintColor: colors.white,
     headerStyle: {
         backgroundColor: colors.alpha,
     },
+
+    //Stijl de tabbar
+    tabBarActiveTintColor: colors.alpha,
+    tabBarInactiveTintColor: colors.gray,
+
 })
 
 export default () => {

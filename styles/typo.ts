@@ -7,7 +7,6 @@ export default StyleSheet.create({
     header1: {
         fontFamily: 'Abel_400Regular',
         fontSize: 32,
-        lineHeight: 38,
         color: colors.black,
         marginBottom: sizing.baseLine * 2,
     },
@@ -15,7 +14,6 @@ export default StyleSheet.create({
     header2: {
         fontFamily: 'Abel_400Regular',
         fontSize: 24,
-        lineHeight: 29,
         color: colors.black,
         marginBottom: sizing.baseLine,
     },
@@ -23,7 +21,6 @@ export default StyleSheet.create({
     header3: {
         fontFamily: 'Abel_400Regular',
         fontSize: 16,
-        lineHeight: 19,
         color: colors.black,
         marginBottom: sizing.baseLine,
     },
@@ -31,7 +28,6 @@ export default StyleSheet.create({
     text: {
         fontFamily: 'OpenSans_400Regular',
         fontSize: 16,
-        lineHeight: 21,
         color: colors.gray,
         marginBottom: sizing.baseLine,
     },

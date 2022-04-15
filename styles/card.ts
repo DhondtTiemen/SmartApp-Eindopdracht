@@ -8,12 +8,28 @@ export default StyleSheet.create({
         // alignItems: "center",
         marginBottom: sizing.baseLine * 3,
         borderBottomWidth: 1,
-        borderColor: colors.gray,
+        borderColor: colors.gray[100],
+    },
+
+    cardBig: {
+        borderBottomWidth: 0,
     },
 
     image: {
         height: 200,
+        width: "100%",
         resizeMode: "cover",
         marginRight: sizing.baseLine * 2,
+    },
+
+    imageDetail: {
+        height: 200,
+    },
+
+    header: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
     }
 })

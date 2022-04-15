@@ -6,5 +6,5 @@ export const colors = {
     gray: '#808080',
 
     error: '#FF0000',
-    good: '#00FF00',
+    good: '#008000',
 }

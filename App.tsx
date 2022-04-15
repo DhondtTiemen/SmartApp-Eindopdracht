@@ -16,6 +16,9 @@ import {
 } from '@expo-google-fonts/open-sans';
 
 import AppNavigation from './screens/AppNavigation';
+import { StatusBar } from 'react-native';
+import { useEffect } from 'react';
+import { dummyData } from './utils/database';
 
 export default function App() {
   const [fontsLoaded, error] = useFonts({
@@ -25,16 +28,23 @@ export default function App() {
     OpenSans_400Regular,
   })
 
+  useEffect(() => {
+    // console.log('Gegevens toevoegen');
+    // dummyData()
+  }, [])
+
   if (!fontsLoaded) {
     return <AppLoading />
   }
   else {
     return (
-      <SafeAreaProvider>
-        <NavigationContainer>
+      <NavigationContainer>
+        <SafeAreaProvider>
+          <StatusBar />
+
           <AppNavigation />
-        </NavigationContainer>
-      </SafeAreaProvider>
+        </SafeAreaProvider>
+      </NavigationContainer>
     );
   }
 }

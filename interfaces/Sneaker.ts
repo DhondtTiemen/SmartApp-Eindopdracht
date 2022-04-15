@@ -4,7 +4,8 @@ interface Sneaker {
     name: string
     price: number
     url: string
+    description: string
+    reminder: boolean
     releaseDate: string
     inCollection: boolean
-    reminder: boolean
 }
