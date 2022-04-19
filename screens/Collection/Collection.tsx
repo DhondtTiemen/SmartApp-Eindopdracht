@@ -14,8 +14,12 @@ import core from "../../styles/core";
 import { Ionicons } from "@expo/vector-icons";
 import button from "../../styles/button";
 import { colors } from "../../styles/colors";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 export default ({ navigation }: {navigation: any}) => {
+    const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+
     const [sneakers, setSneakers] = useState<any[]>([])
 
     useEffect(() => {
@@ -55,7 +59,7 @@ export default ({ navigation }: {navigation: any}) => {
                 <View style={button.upperRightButton}>
                     <Text style={styling.header1}>Collection: </Text>
                     <Pressable>
-                        <Ionicons name="add" color={colors.gray} size={32}/>
+                        <Ionicons name="add" color={colors.gray} size={32} onPress={() => navigate("AllSneakers")}/>
                     </Pressable>
                 </View>
                 <SearchBar />

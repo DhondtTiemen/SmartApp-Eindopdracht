@@ -2,6 +2,7 @@ import { createStackNavigator, StackNavigationOptions } from "@react-navigation/
 
 import Overview from "./Collection";
 import { DetailCollection } from "./Detail";
+import { AllSneakers } from "./AllSneakers";
 
 import { colors } from "../../styles/colors";
 
@@ -21,6 +22,7 @@ export default () => {
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen name="Overview" component={Overview}/>
             <Stack.Screen name="Detailcollection" component={DetailCollection}/>
+            <Stack.Screen name="AllSneakers" component={AllSneakers}/>
         </Stack.Navigator>
     )
 }
