@@ -19,4 +19,18 @@ export default StyleSheet.create({
 
         marginVertical: sizing.baseLine,
     },
+
+    upperRightButton: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+
+    backButton: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
+    }
 })

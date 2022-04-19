@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Text } from "react-native"
+import { Text, SafeAreaView, View } from "react-native"
 import { FlatList } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 
 import { statement, transaction } from "../../utils/database";
@@ -11,6 +10,7 @@ import Card from "../../components/ReleaseCard";
 
 import styling from '../../styles/typo';
 import { page } from "../../styles/page";
+import core from "../../styles/core";
 
 
 export default ({ navigation }: {navigation: any}) => {
@@ -49,8 +49,10 @@ export default ({ navigation }: {navigation: any}) => {
 
     return (
         <SafeAreaView style={page}>
-            <Text style={styling.header1}>Calendar</Text>
-            <FilterBar/>
+            <View style={core.header}>
+                <Text style={styling.header1}>Calendar</Text>
+                <FilterBar/>
+            </View>
 
             <>
                 <FlatList data={sneakers} renderItem={renderSneaker}/>

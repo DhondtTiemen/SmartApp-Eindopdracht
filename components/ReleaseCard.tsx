@@ -11,7 +11,7 @@ export default ({ sneaker }: { sneaker?: Sneaker }) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
     return (
-        <Pressable style={[card.card, utilities.paddingBottomSm]} onPress={() => navigate("Detailrelease")}>
+        <Pressable style={[card.card, utilities.paddingBottomSm]} onPress={() => navigate("Detailrelease", sneaker)}>
             <>
                 <Image style={card.image} source={{uri: `${sneaker?.url}`}} />
             </>
@@ -21,7 +21,7 @@ export default ({ sneaker }: { sneaker?: Sneaker }) => {
                     <Text style={[typo.header2]}>{sneaker?.name}</Text>
                     <Text style={[typo.header3]}>Release: {sneaker?.releaseDate}</Text>
                 </View>
-                <Ionicons style={utilities.marginRightMd} name="ios-notifications-outline" color={colors.gray} size={32}/>
+                <Ionicons style={utilities.marginRightMd} name={sneaker?.reminder == true ? "ios-notifications" : "ios-notifications-outline"} color={colors.gray} size={32}/>
             </View>
         </Pressable>
     )

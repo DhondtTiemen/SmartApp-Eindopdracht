@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Text } from "react-native";
+import { Text, SafeAreaView, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context"
 import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 
 import { statement, transaction } from "../../utils/database";
@@ -11,6 +10,7 @@ import Card from "../../components/CollectionCard";
 
 import { page } from "../../styles/page"
 import styling from '../../styles/typo';
+import core from "../../styles/core";
 
 export default ({ navigation }: {navigation: any}) => {
     const [sneakers, setSneakers] = useState<any[]>([])
@@ -25,7 +25,7 @@ export default ({ navigation }: {navigation: any}) => {
         const tx: SQLTransaction = await transaction()
         const read: SQLResultSet = await statement(
             tx,
-            `SELECT * FROM 'tblSneaker'`,
+            `SELECT * FROM 'tblSneaker' WHERE inCollection == true`,
         )
         setSneakers(read.rows._array)
     }
@@ -48,8 +48,10 @@ export default ({ navigation }: {navigation: any}) => {
 
     return (
         <SafeAreaView style={page}>
-            <Text style={styling.header1}>My Collection</Text>
-            <SearchBar />
+            <View style={core.header}>
+                <Text style={styling.header1}>My Collection</Text>
+                <SearchBar />
+            </View>
 
             <>
                 <FlatList data={sneakers} renderItem={renderSneaker}/>

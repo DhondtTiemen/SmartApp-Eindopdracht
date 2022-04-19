@@ -28,8 +28,8 @@ export default ({ sneaker }: { sneaker?: any }) => {
                     <Text style={typo.text}>{selectedSneaker?.description}</Text>
                 </View>
                 <Pressable style={button.button}>
-                    <Ionicons color={colors.good} name="checkmark" size={32}/>
-                    <Text style={[typo.header3, utilities.marginTopSm, utilities.marginLeftSm]}>Added to your collection</Text>
+                    <Ionicons name={selectedSneaker?.inCollection == true ? "checkmark" : "add"} color={selectedSneaker?.inCollection == true ? colors.good : colors.gray} size={32}/>
+                    <Text style={[typo.header3, utilities.marginTopSm, utilities.marginLeftSm]}>{selectedSneaker?.inCollection == true ? "Added to your collection" : "Add to your collection"}</Text>
                 </Pressable>
                 <Pressable style={button.button}>
                     <Ionicons color={colors.gray} name="share" size={32}/>

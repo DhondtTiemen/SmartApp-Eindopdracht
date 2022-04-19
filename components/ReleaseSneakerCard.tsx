@@ -28,7 +28,7 @@ export default ({ sneaker }: { sneaker?: any }) => {
                     <Text style={typo.text}>{selectedSneaker?.description}</Text>
                 </View>
                 <Pressable style={button.button}>
-                    <Ionicons color={colors.gray} name="notifications-outline" size={32}/>
+                    <Ionicons color={colors.gray} name={selectedSneaker?.reminder == true ? "ios-notifications" : "ios-notifications-outline"} size={32}/>
                     <Text style={[typo.header3, utilities.marginTopSm, utilities.marginLeftSm]}>Add reminder</Text>
                 </Pressable>
                 <Pressable style={button.button}>

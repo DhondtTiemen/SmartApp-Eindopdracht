@@ -5,13 +5,11 @@ import ReleaseSneakerCard from "../../components/ReleaseSneakerCard"
 import { detail, page } from "../../styles/page"
 import { statement, transaction } from "../../utils/database"
 
-export const DetailRelease = ({ props }: { props:any }) => {
+export const DetailRelease = ({ route }: { route: any }) => {
 
     const [sneaker, setSneaker] = useState<any[]>([])
 
-    const selectedSneaker = {
-        id: 456789,
-    }
+    const selectedSneaker = route.params
 
     //Geselecteerd sneaker uit database halen
     const getSneaker = async () => {

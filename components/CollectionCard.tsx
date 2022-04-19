@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons"
-import { useNavigation, ParamListBase } from "@react-navigation/native"
+import { useNavigation, ParamListBase, useRoute } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { Image, Pressable, Text, View } from "react-native"
 import card from "../styles/card"
@@ -11,7 +11,7 @@ export default ({ sneaker }: { sneaker?: Sneaker }) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
     return (
-        <Pressable style={[card.card, utilities.paddingBottomSm]} onPress={() => navigate("Detailcollection")}>
+        <Pressable style={[card.card, utilities.paddingBottomSm]} onPress={() => navigate("Detailcollection", sneaker)}>
             <>
                 <Image style={card.image} source={{uri: `${sneaker?.url}`}} />
             </>
@@ -21,7 +21,7 @@ export default ({ sneaker }: { sneaker?: Sneaker }) => {
                     <Text style={[typo.header2]}>{sneaker?.name}</Text>
                     <Text style={[typo.header3]}>€{sneaker?.price}</Text>
                 </View>
-                <Ionicons style={utilities.marginRightMd} name="checkmark" color={colors.good} size={32}/>
+                <Ionicons style={utilities.marginRightMd} name={sneaker?.inCollection == true ? "checkmark" : "close"} color={sneaker?.inCollection == true ? colors.good : colors.error} size={32}/>
             </View>
         </Pressable>
     )

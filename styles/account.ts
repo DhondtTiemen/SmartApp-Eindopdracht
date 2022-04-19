@@ -4,10 +4,13 @@ import { sizing } from "./page";
 
 export default StyleSheet.create({
     imageHolder: {
+        paddingTop: sizing.baseLine * 3,
         flex:1,
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        borderBottomWidth: 1,
+        paddingBottom: sizing.baseLine * 7,
     },
 
     image: {
