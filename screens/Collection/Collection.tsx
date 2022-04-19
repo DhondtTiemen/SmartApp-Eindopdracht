@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, SafeAreaView, View } from "react-native";
+import { Text, SafeAreaView, View, Pressable } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 
@@ -11,6 +11,9 @@ import Card from "../../components/CollectionCard";
 import { page } from "../../styles/page"
 import styling from '../../styles/typo';
 import core from "../../styles/core";
+import { Ionicons } from "@expo/vector-icons";
+import button from "../../styles/button";
+import { colors } from "../../styles/colors";
 
 export default ({ navigation }: {navigation: any}) => {
     const [sneakers, setSneakers] = useState<any[]>([])
@@ -49,7 +52,12 @@ export default ({ navigation }: {navigation: any}) => {
     return (
         <SafeAreaView style={page}>
             <View style={core.header}>
-                <Text style={styling.header1}>My Collection</Text>
+                <View style={button.upperRightButton}>
+                    <Text style={styling.header1}>Collection: </Text>
+                    <Pressable>
+                        <Ionicons name="add" color={colors.gray} size={32}/>
+                    </Pressable>
+                </View>
                 <SearchBar />
             </View>
 

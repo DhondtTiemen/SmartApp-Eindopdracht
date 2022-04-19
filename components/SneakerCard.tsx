@@ -14,7 +14,7 @@ export default ({ sneaker }: { sneaker?: any }) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
     const selectedSneaker = sneaker[0]
-    // console.log(selectedSneaker);
+    console.log(selectedSneaker);
 
     const addToCollection = async () => {
         console.log(selectedSneaker.name)

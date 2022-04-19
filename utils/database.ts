@@ -55,19 +55,19 @@ export const dummyData = async () => {
     //Data toevoegen
     console.log('Data aanmaken');
     const tx2: SQLTransaction = await transaction();
-    const date: string = new Date().toDateString();
+    const date: string = new Date().toLocaleDateString();
     // console.log("Datum: " + date);
     const insert: SQLResultSet | void = await statement(
         tx2,
-        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('12345', 'Nike', 'Air Max 95', 175, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/702757f21e44e28d79a9ce9419896c5e_1635268850.jpeg', 'Virgil Abloh‘s passing is still difficult to grasp, as he left such an impression on the world of sneakers as well as fashion. Nike, like many of us, mourns the late designer, and they’re soon to pay tribute to his legacy with the official release of the Off-White x Nike Blazer Low.', false, '${date}', true)`,
+        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('12345', 'Nike', 'Air Max 95', 175, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/702757f21e44e28d79a9ce9419896c5e_1635268850.jpeg', 'Virgil Abloh‘s passing is still difficult to grasp, as he left such an impression on the world of sneakers as well as fashion. Nike, like many of us, mourns the late designer, and they’re soon to pay tribute to his legacy with the official release of the Off-White x Nike Blazer Low.', true, "${date}", true)`,
     )
     console.log(insert);
     const tx4: SQLTransaction = await transaction();
-    const date2: string = new Date().toDateString();
+    const date2: string = new Date().toLocaleDateString();
     // console.log("Datum: " + date);
     const insert2: SQLResultSet | void = await statement(
         tx4,
-        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('456789', 'Nike', 'Blazor Mid "77 Jumbo', 110, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/d4ef486a9a0aff0c03387db9d60b97ec_1645727510.jpeg', 'Virgil Abloh‘s passing is still difficult to grasp, as he left such an impression on the world of sneakers as well as fashion. Nike, like many of us, mourns the late designer, and they’re soon to pay tribute to his legacy with the official release of the Off-White x Nike Blazer Low.', false, '${date2}', true)`,
+        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('456789', 'Nike', 'Blazor Mid "77 Jumbo', 110, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/d4ef486a9a0aff0c03387db9d60b97ec_1645727510.jpeg', 'Virgil Abloh‘s passing is still difficult to grasp, as he left such an impression on the world of sneakers as well as fashion. Nike, like many of us, mourns the late designer, and they’re soon to pay tribute to his legacy with the official release of the Off-White x Nike Blazer Low.', false, "${date2}", true)`,
     )
     console.log(insert2);
 
