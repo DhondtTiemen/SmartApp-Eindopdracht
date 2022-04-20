@@ -9,7 +9,7 @@ import typo from "../styles/typo"
 import utilities from "../styles/utilities"
 import { statement, transaction } from "../utils/database"
 
-export default ({ sneaker }: { sneaker?: Sneaker }) => {
+export default ({ sneaker }: { sneaker: Sneaker }) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
     const setReminder = async () => {
@@ -44,7 +44,7 @@ export default ({ sneaker }: { sneaker?: Sneaker }) => {
             <View style={card.header}>
                 <View>
                     <Text style={[typo.header3, utilities.marginTopMd]}>{sneaker?.brand}</Text>
-                    <Text style={[typo.header2]}>{sneaker?.name}</Text>
+                    <Text style={[typo.header2]}>{sneaker.name.length >= 30 ? `${sneaker?.name.substring(0, 25)}...` : sneaker?.name}</Text>
                     <Text style={[typo.header3]}>Release: {sneaker?.releaseDate}</Text>
                 </View>
                 <Pressable onPress={sneaker?.reminder == true ? removeReminder : setReminder}>

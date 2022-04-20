@@ -34,8 +34,12 @@ export default ({ navigation }: {navigation: any}) => {
             // console.log(new Date().toLocaleDateString())
 
             var releaseDate = new Date(sneaker.releaseDate).toLocaleDateString();
+            console.log(releaseDate);
 
-            if (releaseDate >= new Date().toLocaleDateString()) {
+            var todayDate = new Date().toLocaleDateString()
+            console.log(todayDate)
+
+            if (releaseDate >= todayDate) {
                 setSneakers(read.rows._array)
             }
         }

@@ -15,6 +15,10 @@ export default StyleSheet.create({
         borderBottomWidth: 0,
     },
 
+    cardSmall: {
+        marginBottom: sizing.baseLine,
+    },
+
     image: {
         height: 200,
         width: "100%",
@@ -24,6 +28,12 @@ export default StyleSheet.create({
 
     imageDetail: {
         height: 200,
+    },
+
+    imageSmall: {
+        height: 100,
+        width: 100,
+        resizeMode: "contain",
     },
 
     header: {
