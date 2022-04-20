@@ -15,6 +15,7 @@ import core from "../../styles/core";
 
 export default ({ navigation }: {navigation: any}) => {
     const [sneakers, setSneakers] = useState<any[]>([])
+    const [releaseList, setReleaseList] = useState<any[]>([])
 
     useEffect(() => {
         getSneakers()
@@ -26,21 +27,23 @@ export default ({ navigation }: {navigation: any}) => {
         const tx: SQLTransaction = await transaction()
         const read: SQLResultSet = await statement(
             tx,
-            `SELECT * FROM 'tblSneaker'`,
+            `SELECT * FROM 'tblSneaker' ORDER BY releaseDate ASC`,
         )
+
         for (let index = 0; index < read.rows._array.length; index++) {
             const sneaker = read.rows._array[index];
             // console.log(sneaker.releaseDate);
             // console.log(new Date().toLocaleDateString())
 
             var releaseDate = new Date(sneaker.releaseDate).toLocaleDateString();
-            console.log(releaseDate);
+            console.log("Releasedate: ", releaseDate);
 
             var todayDate = new Date().toLocaleDateString()
-            console.log(todayDate)
+            console.log("Todaydate: ", todayDate)
 
             if (releaseDate >= todayDate) {
-                setSneakers(read.rows._array)
+                console.log("Goedgekeurd")
+                setSneakers(currentArray => [...currentArray, read.rows._array[index]])
             }
         }
     }
