@@ -3,7 +3,7 @@ import { sizing } from "./page";
 
 export default StyleSheet.create({
     header: {
-        paddingTop: sizing.baseLine * 3,
+        paddingTop: sizing.baseLine * 2,
     },
     
     body: {

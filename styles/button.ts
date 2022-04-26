@@ -3,6 +3,19 @@ import { colors } from "./colors";
 import { sizing } from "./page";
 
 export default StyleSheet.create({
+    upperRightButton: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    
+    upperLeftButton: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "flex-start",
+    },
+
     button: {
         display: "flex",
         flexDirection: "row",
@@ -11,26 +24,12 @@ export default StyleSheet.create({
 
         height: 75,
 
+        borderRadius: 16,
+        borderWidth: 1,
+
         paddingHorizontal: sizing.baseLine * 2,
         paddingVertical: sizing.baseLine,
-        borderRadius: 16,
-
-        borderWidth: 1,
 
         marginVertical: sizing.baseLine,
     },
-
-    upperRightButton: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-
-    backButton: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-start",
-    }
 })

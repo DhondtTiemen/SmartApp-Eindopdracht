@@ -12,6 +12,7 @@ import { statement, transaction } from "../utils/database"
 export default ({ sneaker }: { sneaker: Sneaker }) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
+
     const removeFromCollection = async () => {
         console.log(sneaker.name)
         console.log("Removing from collection!")
@@ -25,15 +26,13 @@ export default ({ sneaker }: { sneaker: Sneaker }) => {
     }
 
     return (
-        <Pressable style={[card.card, utilities.paddingBottomSm]} onPress={() => navigate("Detailcollection", sneaker)}>
-            <>
-                <Image style={card.image} source={{uri: `${sneaker?.url}`}} />
-            </>
-            <View style={card.header}>
+        <Pressable style={card.holder} onPress={() => navigate("Detailcollection", sneaker)}>
+            <Image style={card.image} source={{uri: `${sneaker?.url}`}} />
+            <View style={card.body}>
                 <View>
                     <Text style={[typo.header3, utilities.marginTopMd]}>{sneaker?.brand}</Text>
-                    <Text style={[typo.header2]}>{sneaker.name.length >= 30 ? `${sneaker?.name.substring(0, 25)}...` : sneaker?.name}</Text>
-                    <Text style={[typo.header3]}>€{sneaker?.price}</Text>
+                    <Text style={typo.header2}>{sneaker.name.length >= 30 ? `${sneaker?.name.substring(0, 25)}...` : sneaker?.name}</Text>
+                    <Text style={typo.header3}>€{sneaker?.price}</Text>
                 </View>
                 <Pressable onPress={removeFromCollection}>
                     <Ionicons style={utilities.marginRightMd} name={sneaker?.inCollection == true ? "checkmark" : "close"} color={sneaker?.inCollection == true ? colors.good : colors.error} size={32}/>

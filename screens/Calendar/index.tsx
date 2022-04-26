@@ -1,6 +1,6 @@
 import { createStackNavigator, StackNavigationOptions } from "@react-navigation/stack"
 
-import Calendar from "./Calendar"
+import Overview from "./Overview"
 import { DetailRelease } from "./Detail"
 
 import { colors } from "../../styles/colors"
@@ -12,13 +12,13 @@ export default () => {
         headerShown: false,
 
         cardStyle: {
-            backgroundColor: colors.alpha,
+            backgroundColor: colors.white,
         }
     }
 
     return (
         <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="Calendar" component={Calendar}/>
+            <Stack.Screen name="Overview" component={Overview}/>
             <Stack.Screen name="Detailrelease" component={DetailRelease}/>
         </Stack.Navigator>
     )

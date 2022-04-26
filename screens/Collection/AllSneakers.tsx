@@ -4,7 +4,7 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native"
 import { colors } from "../../styles/colors"
 import core from "../../styles/core"
-import { page, sizing } from "../../styles/page"
+import {  sizing, styles } from "../../styles/page"
 import utilities from "../../styles/utilities"
 import styling from '../../styles/typo';
 import button from "../../styles/button"
@@ -14,6 +14,7 @@ import { useEffect, useState } from "react"
 import { SQLResultSet, SQLTransaction } from "expo-sqlite"
 import { statement, transaction } from "../../utils/database"
 import SneakerItem from "../../components/SneakerItem"
+import search from "../../styles/searchBar"
 
 export const AllSneakers = () => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
@@ -62,42 +63,22 @@ export const AllSneakers = () => {
     }
 
     return (
-        <SafeAreaView style={page}>
+        <SafeAreaView style={styles.container}>
             <View style={core.header}>
-                <View style={button.backButton}>
-                    <Ionicons style={[utilities.marginBottomMd, utilities.marginRightMd]} color={colors.gray} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
-                    <Text style={styling.header1}>Add Sneaker: </Text>
+                <View style={button.upperLeftButton}>
+                    <Ionicons style={utilities.marginRightMd} color={colors.gray} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
+                    <Text style={styling.header2}>Add Sneaker: </Text>
                 </View>
+
                 {/* Searchbar */}
-                <View style={styles.searchBar}>
+                <View style={search.bar}>
                     <Ionicons name="search" size={16} color={colors.gray}/>
-                    <TextInput style={styles.textSearch} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInAll}/>
+                    <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInAll}/>
                 </View>
             </View>
 
-            <>
-                <FlatList data={sneakers} renderItem={renderSneaker}/>
-            </>
+            {/* Flatlist */}
+            <FlatList data={sneakers} renderItem={renderSneaker}/>
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    searchBar: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        paddingBottom: sizing.baseLine,
-        borderBottomWidth: 1,
-        borderBottomColor: colors.gray,
-        marginBottom: sizing.baseLine * 2,
-    },
-
-    textSearch: {
-        backgroundColor: colors.white,
-        color: colors.black,
-        marginVertical: 8,
-        borderRadius: 10,
-        marginLeft: sizing.baseLine,
-    },
-})

@@ -7,7 +7,7 @@ export default StyleSheet.create({
     header1: {
         fontFamily: 'Abel_400Regular',
         fontSize: 32,
-        color: colors.black,
+        color: colors.alpha,
         marginBottom: sizing.baseLine * 2,
     },
 

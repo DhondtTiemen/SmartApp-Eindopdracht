@@ -35,10 +35,11 @@ const screenOptions = ({ route }: { route: RouteProp<ParamListBase> }) : BottomT
     },
     
     //Stijl de header
-    headerTintColor: colors.white,
-    headerStyle: {
-        backgroundColor: colors.alpha,
-    },
+    headerShown: false,
+    // headerTintColor: colors.white,
+    // headerStyle: {
+    //     backgroundColor: colors.alpha,
+    // },
 
     //Stijl de tabbar
     tabBarActiveTintColor: colors.alpha,

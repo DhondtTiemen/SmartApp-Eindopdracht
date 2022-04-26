@@ -34,9 +34,9 @@ export default ({ sneaker }: { sneaker?: any }) => {
     }
 
     return (
-        <ScrollView style={[card.cardSmall]}>
+        <ScrollView style={card.holder}>
             <View style={utilities.flexSpaceBetween}>
-                <View style={button.backButton}>
+                <View style={button.upperRightButton}>
                     <Image style={[card.imageSmall, utilities.marginRightMd]} source={{uri: `${sneaker.url}`}}/>
                     <View>
                         <Text style={typo.text}>{sneaker.brand.length >= 25 ? `${sneaker?.brand.substring(0, 20)}...` : sneaker?.brand}</Text>

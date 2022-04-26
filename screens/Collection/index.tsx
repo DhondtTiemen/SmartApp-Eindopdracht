@@ -14,7 +14,7 @@ export default () => {
         headerShown: false,
 
         cardStyle: {
-            backgroundColor: colors.alpha,
+            backgroundColor: colors.white,
         }
     }
 

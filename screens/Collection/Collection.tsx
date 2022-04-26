@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, Pressable, TextInput, StyleSheet } from "react-native";
+import { useCallback, useEffect, useState } from "react";
+import { Text, SafeAreaView, View, Pressable, TextInput, StyleSheet, RefreshControl } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 
 import { statement, transaction } from "../../utils/database";
 
-import SearchBar from "../../components/SearchBar";
 import Card from "../../components/CollectionCard";
 
-import { page, sizing } from "../../styles/page"
+import { sizing, styles } from "../../styles/page"
 import styling from '../../styles/typo';
 import core from "../../styles/core";
 import { Ionicons } from "@expo/vector-icons";
@@ -16,11 +15,13 @@ import button from "../../styles/button";
 import { colors } from "../../styles/colors";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import search from "../../styles/searchBar";
 
 export default ({ navigation }: {navigation: any}) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
     const [sneakers, setSneakers] = useState<any[]>([])
+    const [refreshing, setRefreshing] = useState(false)
 
     useEffect(() => {
         getSneakers()
@@ -63,8 +64,13 @@ export default ({ navigation }: {navigation: any}) => {
         setSneakers(read.rows._array)
     }
 
+    const onRefresh = () => {
+        // console.log("Refreshing");
+        getSneakers();
+    }
+
     return (
-        <SafeAreaView style={page}>
+        <SafeAreaView style={styles.container}>
             <View style={core.header}>
                 <View style={button.upperRightButton}>
                     <Text style={styling.header1}>Collection: </Text>
@@ -72,36 +78,16 @@ export default ({ navigation }: {navigation: any}) => {
                         <Ionicons name="add" color={colors.gray} size={32} />
                     </Pressable>
                 </View>
+
                 {/* Searchbar */}
-                <View style={styles.searchBar}>
+                <View style={search.bar}>
                     <Ionicons name="search" size={16} color={colors.gray}/>
-                    <TextInput style={styles.textSearch} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInCollection}/>
+                    <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInCollection}/>
                 </View>
             </View>
 
-            <>
-                <FlatList data={sneakers} renderItem={renderSneaker}/>
-            </>
+            {/* Flatlist */}
+            <FlatList data={sneakers} renderItem={renderSneaker} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}/>
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    searchBar: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        paddingBottom: sizing.baseLine,
-        borderBottomWidth: 1,
-        borderBottomColor: colors.gray,
-        marginBottom: sizing.baseLine * 2,
-    },
-
-    textSearch: {
-        backgroundColor: colors.white,
-        color: colors.black,
-        marginVertical: 8,
-        borderRadius: 10,
-        marginLeft: sizing.baseLine,
-    },
-})

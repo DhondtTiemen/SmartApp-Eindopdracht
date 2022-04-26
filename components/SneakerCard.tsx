@@ -11,7 +11,6 @@ import utilities from "../styles/utilities";
 import { statement, transaction } from "../utils/database";
 
 export default ({ sneaker }: { sneaker?: any }) => {
-    const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
     const selectedSneaker = sneaker[0]
     console.log(selectedSneaker);
@@ -41,27 +40,22 @@ export default ({ sneaker }: { sneaker?: any }) => {
     }
 
     return (
-        <View>
-            <Ionicons style={utilities.marginBottomMd} color={colors.gray} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
-            <ScrollView style={[card.cardBig]}>
-                <>
-                    <Image style={card.imageDetail} source={{uri: `${selectedSneaker?.url}`}} />
-                </>
-                <View>
-                    <Text style={[typo.header2, utilities.marginTopMd]}>{selectedSneaker?.brand} {selectedSneaker?.name}</Text>
-                    <Text style={typo.header3}>Released: {selectedSneaker?.releaseDate}</Text>
-                    <Text style={typo.header3}>€{selectedSneaker?.price}</Text>
-                    <Text style={typo.text}>{selectedSneaker?.description}</Text>
-                </View>
-                <Pressable style={button.button} onPress={selectedSneaker?.inCollection == true ? removeFromCollection : addToCollection}>
-                    <Ionicons name={selectedSneaker?.inCollection == true ? "checkmark" : "add"} color={selectedSneaker?.inCollection == true ? colors.good : colors.gray} size={32}/>
-                    <Text style={[typo.header3, utilities.marginTopSm, utilities.marginLeftSm]}>{selectedSneaker?.inCollection == true ? "Added to your collection" : "Add to your collection"}</Text>
-                </Pressable>
-                <Pressable style={button.button} onPress={share}>
-                    <Ionicons color={colors.gray} name="share" size={32}/>
-                    <Text style={[typo.header3, utilities.marginTopSm, utilities.marginLeftSm]}>Share</Text>
-                </Pressable>
-            </ScrollView>
-        </View>
+        <ScrollView>
+            <Image style={card.image} source={{uri: `${selectedSneaker?.url}`}} />
+            <View>
+                <Text style={[typo.header2, utilities.marginTopMd]}>{selectedSneaker?.brand} {selectedSneaker?.name}</Text>
+                <Text style={typo.header3}>Released: {selectedSneaker?.releaseDate}</Text>
+                <Text style={typo.header3}>€{selectedSneaker?.price}</Text>
+                <Text style={typo.text}>{selectedSneaker?.description}</Text>
+            </View>
+            <Pressable style={button.button} onPress={selectedSneaker?.inCollection == true ? removeFromCollection : addToCollection}>
+                <Ionicons style={utilities.marginRightMd} name={selectedSneaker?.inCollection == true ? "checkmark" : "add"} color={selectedSneaker?.inCollection == true ? colors.good : colors.gray} size={32}/>
+                <Text style={[typo.header3, utilities.marginTopSm]}>{selectedSneaker?.inCollection == true ? "Added to your collection" : "Add to your collection"}</Text>
+            </Pressable>
+            <Pressable style={button.button} onPress={share}>
+                <Ionicons style={utilities.marginRightMd} color={colors.gray} name="share" size={32}/>
+                <Text style={[typo.header3, utilities.marginTopSm]}>Share</Text>
+            </Pressable>
+        </ScrollView>
     )
 }
