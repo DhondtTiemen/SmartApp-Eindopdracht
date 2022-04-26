@@ -5,13 +5,12 @@ export default StyleSheet.create({
     header: {
         paddingTop: sizing.baseLine * 3,
     },
-
+    
     body: {
         paddingTop: sizing.baseLine * 5,
     },
 
     footer: {
-        flex: 1,
-        marginBottom: 0,
+        paddingTop: sizing.baseLine * 5,
     }
 })

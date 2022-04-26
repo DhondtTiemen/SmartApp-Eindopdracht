@@ -40,8 +40,8 @@ export default () => {
             </View>
 
             <View style={core.body}>
-                <View style={account.imageHolder}>
-                    <Image style={account.image} source={{uri: "https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-9/157230181_1421015028235325_2604689619399905216_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Ab8SwAJ_VtAAX8OJauL&_nc_ht=scontent-bru2-1.xx&oh=00_AT_rkn9xqjoAvrfttmpPcNuDjgiWIXH5yZ24aFoZE6qMCg&oe=6276B21D"}}/>
+                <View style={[account.imageHolder]}>
+                    <Image style={[account.image, utilities.paddingBottomMd]} source={{uri: "https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-9/157230181_1421015028235325_2604689619399905216_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Ab8SwAJ_VtAAX8OJauL&_nc_ht=scontent-bru2-1.xx&oh=00_AT_rkn9xqjoAvrfttmpPcNuDjgiWIXH5yZ24aFoZE6qMCg&oe=6276B21D"}}/>
                 </View>
                 
                 <Text style={[typo.header2, utilities.marginTopMd]}>First Name</Text>
@@ -54,7 +54,7 @@ export default () => {
                 <TextInput style={account.input} onChangeText={(str) => setEmail(str)} value={email} placeholder={"john.doe@email.com"}/>
             </View>
 
-            <View style={core.footer}>
+            <View style={core.footer}>                
                 <Button color={colors.error} onPress={triggerLogOut} title="Log out"/>
                 <Button color={colors.error} onPress={triggerDeleteAccount} title="Delete Account"/>
             </View>

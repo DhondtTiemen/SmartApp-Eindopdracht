@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, Pressable } from "react-native";
+import { Text, SafeAreaView, View, Pressable, TextInput, StyleSheet } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 
@@ -8,7 +8,7 @@ import { statement, transaction } from "../../utils/database";
 import SearchBar from "../../components/SearchBar";
 import Card from "../../components/CollectionCard";
 
-import { page } from "../../styles/page"
+import { page, sizing } from "../../styles/page"
 import styling from '../../styles/typo';
 import core from "../../styles/core";
 import { Ionicons } from "@expo/vector-icons";
@@ -53,16 +53,30 @@ export default ({ navigation }: {navigation: any}) => {
         return <Card sneaker={sneaker} key={item.id}/>
     }
 
+    const searchSneakerInCollection = async (textInput: string) => {
+        console.log(textInput)
+        const tx: SQLTransaction = await transaction()
+        const read: SQLResultSet = await statement(
+            tx,
+            `SELECT * FROM 'tblSneaker' WHERE Name LIKE "%${textInput}%" AND inCollection == true`,
+        )
+        setSneakers(read.rows._array)
+    }
+
     return (
         <SafeAreaView style={page}>
             <View style={core.header}>
                 <View style={button.upperRightButton}>
                     <Text style={styling.header1}>Collection: </Text>
-                    <Pressable>
-                        <Ionicons name="add" color={colors.gray} size={32} onPress={() => navigate("AllSneakers")}/>
+                    <Pressable onPress={() => navigate("AllSneakers")}>
+                        <Ionicons name="add" color={colors.gray} size={32} />
                     </Pressable>
                 </View>
-                <SearchBar />
+                {/* Searchbar */}
+                <View style={styles.searchBar}>
+                    <Ionicons name="search" size={16} color={colors.gray}/>
+                    <TextInput style={styles.textSearch} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInCollection}/>
+                </View>
             </View>
 
             <>
@@ -71,3 +85,23 @@ export default ({ navigation }: {navigation: any}) => {
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    searchBar: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        paddingBottom: sizing.baseLine,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.gray,
+        marginBottom: sizing.baseLine * 2,
+    },
+
+    textSearch: {
+        backgroundColor: colors.white,
+        color: colors.black,
+        marginVertical: 8,
+        borderRadius: 10,
+        marginLeft: sizing.baseLine,
+    },
+})

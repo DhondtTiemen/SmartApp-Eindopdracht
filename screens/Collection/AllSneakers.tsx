@@ -1,10 +1,10 @@
 import { Ionicons } from "@expo/vector-icons"
 import { ParamListBase, useNavigation } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { SafeAreaView, Text, View } from "react-native"
+import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native"
 import { colors } from "../../styles/colors"
 import core from "../../styles/core"
-import { page } from "../../styles/page"
+import { page, sizing } from "../../styles/page"
 import utilities from "../../styles/utilities"
 import styling from '../../styles/typo';
 import button from "../../styles/button"
@@ -51,6 +51,16 @@ export const AllSneakers = () => {
         return <SneakerItem sneaker={sneaker} key={item.id}/>
     }
 
+    const searchSneakerInAll = async (textInput: string) => {
+        console.log(textInput)
+        const tx: SQLTransaction = await transaction()
+        const read: SQLResultSet = await statement(
+            tx,
+            `SELECT * FROM 'tblSneaker' WHERE Name LIKE "%${textInput}%"`,
+        )
+        setSneakers(read.rows._array)
+    }
+
     return (
         <SafeAreaView style={page}>
             <View style={core.header}>
@@ -58,7 +68,11 @@ export const AllSneakers = () => {
                     <Ionicons style={[utilities.marginBottomMd, utilities.marginRightMd]} color={colors.gray} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
                     <Text style={styling.header1}>Add Sneaker: </Text>
                 </View>
-                <SearchBar />
+                {/* Searchbar */}
+                <View style={styles.searchBar}>
+                    <Ionicons name="search" size={16} color={colors.gray}/>
+                    <TextInput style={styles.textSearch} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInAll}/>
+                </View>
             </View>
 
             <>
@@ -67,3 +81,23 @@ export const AllSneakers = () => {
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    searchBar: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        paddingBottom: sizing.baseLine,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.gray,
+        marginBottom: sizing.baseLine * 2,
+    },
+
+    textSearch: {
+        backgroundColor: colors.white,
+        color: colors.black,
+        marginVertical: 8,
+        borderRadius: 10,
+        marginLeft: sizing.baseLine,
+    },
+})

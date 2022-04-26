@@ -31,6 +31,10 @@ export default StyleSheet.create({
         paddingBottom: sizing.baseLine,
     },
 
+    paddingBottomMd: {
+        paddingBottom: sizing.baseLine * 2,
+    },
+
     flexSpaceBetween: {
         display: "flex",
         flexDirection: "row",
