@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, ScrollView, StyleSheet, RefreshControl } from "react-native"
+import { Text, SafeAreaView, View, ScrollView, StyleSheet, RefreshControl, Platform } from "react-native"
 import { FlatList } from "react-native-gesture-handler";
 import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 
@@ -16,15 +16,80 @@ import RNPickerSelect from 'react-native-picker-select';
 import filter from "../../styles/filterBar";
 import utilities from "../../styles/utilities";
 import typo from "../../styles/typo";
+import { CalendarAccessLevel, createCalendarAsync, EntityTypes, getCalendarsAsync, requestCalendarPermissionsAsync } from "expo-calendar";
 
 
 export default ({ navigation }: {navigation: any}) => {
     const [sneakers, setSneakers] = useState<any[]>([])
     const [refreshing, setRefreshing] = useState(false)
 
+    //Calendar
+    const [isFirstTime, setFirstTime] = useState<boolean>(true)
+    const [sneakerCalendarId, setSneakerCalendarId] = useState<string>("")
+
+    //Checking permissions
+    useEffect(() => {
+        (async () => {
+            const { status } = await requestCalendarPermissionsAsync()
+
+            if (status === "granted") {
+                const calendars = await getCalendarsAsync(
+                    EntityTypes.EVENT
+                )
+            }
+        })()
+    }, [])
+
     useEffect(() => {
         getSneakers()
+        createCalendar()
     }, [])
+
+    //Getting calendar source
+    const getDefaultCalendarSource = async () => {
+        const calendars = await getCalendarsAsync(
+          EntityTypes.EVENT
+        );
+
+        const defaultCalendars = calendars.filter(
+          (each) => each.title === 'default'
+        );
+    
+        return defaultCalendars.length
+          ? defaultCalendars[0].source
+          : calendars[0].source;
+    }
+
+    const createCalendar = async () => {
+        const defaultCalendarSource =
+          Platform.OS === 'ios'
+            ? await getDefaultCalendarSource()
+            : { isLocalAccount: true, name: 'Sneakers Calendar' };
+   
+        if (isFirstTime) {
+          const calendarId = await createCalendarAsync({
+            title: 'Sneakers Calendar',
+            color: "#00afdb",
+            entityType: EntityTypes.EVENT,
+            sourceId: defaultCalendarSource.id,
+            source: defaultCalendarSource,
+            name: 'internalCalendarName',
+            ownerAccount: 'personal',
+            accessLevel: CalendarAccessLevel.OWNER,
+          });
+          
+          setFirstTime(false)
+          setSneakerCalendarId(calendarId)
+
+          console.log("Calendar Created!")
+    
+          return calendarId
+        }
+        else {
+          const calendarId = sneakerCalendarId
+          return calendarId
+        }
+    }
 
     //Sneakers uit database halen
     const getSneakers = async () => {
@@ -51,7 +116,7 @@ export default ({ navigation }: {navigation: any}) => {
             reminder: item.reminder,
         }
 
-        return <Card sneaker={sneaker} key={item.id}/>
+        return <Card sneaker={sneaker} calendarId={sneakerCalendarId} key={item.id}/>
     }
 
     const filterSneakers = async ( brand: string ) => {

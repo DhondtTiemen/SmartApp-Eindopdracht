@@ -1,20 +1,22 @@
-import { Ionicons } from "@expo/vector-icons"
+import { useEffect, useRef, useState } from "react"
+import { Image, Platform, Pressable, Text, View } from "react-native"
 import { useNavigation, ParamListBase } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { CalendarAccessLevel, createCalendarAsync, createEventAsync, EntityTypes, getCalendarsAsync, getDefaultCalendarAsync, requestCalendarPermissionsAsync } from "expo-calendar"
-import { SQLResultSet, SQLTransaction } from "expo-sqlite"
-import { useEffect, useRef, useState } from "react"
-import { Button, Image, Platform, Pressable, Text, View } from "react-native"
-import card from "../styles/card"
-import { colors } from "../styles/colors"
-import typo from "../styles/typo"
-import utilities from "../styles/utilities"
-import { statement, transaction } from "../utils/database"
-import LottieView from 'lottie-react-native';
 
-export default ({ sneaker }: { sneaker: Sneaker }) => {
+import { SQLResultSet, SQLTransaction } from "expo-sqlite"
+import LottieView from 'lottie-react-native';
+import { CalendarAccessLevel, createCalendarAsync, createEventAsync, deleteEventAsync, EntityTypes, getCalendarsAsync, requestCalendarPermissionsAsync } from "expo-calendar"
+
+import { statement, transaction } from "../utils/database"
+
+import typo from "../styles/typo"
+import card from "../styles/card"
+import utilities from "../styles/utilities"
+
+export default ({ sneaker, calendarId }: { sneaker: Sneaker, calendarId: string }) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
+    //Animaties
     const [reminder, setReminder] = useState<boolean>(sneaker.reminder);
     const animation = useRef(null)
     const isFirstRun = useRef(true)
@@ -37,65 +39,29 @@ export default ({ sneaker }: { sneaker: Sneaker }) => {
         }
     }, [reminder])
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const { status } = await requestCalendarPermissionsAsync();
+    const addNewEvent = async () => {
+        try {    
+          const res = await createEventAsync (
+            calendarId, {
+            endDate: new Date(sneaker.releaseDate),
+            startDate: new Date(sneaker.releaseDate),
+            allDay: true,
+            title: `Release: ${sneaker.brand} - ${sneaker.name}`,
+          });
 
-    //         if (status === "granted") {
-    //             const calendars = await getCalendarsAsync(EntityTypes.EVENT);
-    //             console.log({ calendars })
-    //         }
-    //     })()
-    // }, [])
-
-    // async function getDefaultCalendarSource() {
-    //     const calendars = await getCalendarsAsync(EntityTypes.EVENT);
-    //     const defaultCalendars = calendars.filter((each) => each.source.name === 'Default');
-    //     return defaultCalendars.length 
-    //     ? defaultCalendars[0].source 
-    //     : calendars[0].source;
-    // }
-      
-    // async function createCalendar() {
-    //     const defaultCalendarSource = Platform.OS === 'ios' 
-    //     ? await getDefaultCalendarSource() 
-    //     : { isLocalAccount: true, name: 'Sneaker Calendar' };
-
-    //     const newCalendarID = await createCalendarAsync({
-    //         title: 'Sneaker Calendar',
-    //         color: 'blue',
-    //         entityType: EntityTypes.EVENT,
-    //         sourceId: defaultCalendarSource.id,
-    //         source: defaultCalendarSource,
-    //         name: 'internalCalendarName',
-    //         ownerAccount: 'personal',
-    //         accessLevel: CalendarAccessLevel.OWNER,
-    //     });
-
-    //     console.log(`Your new calendar ID is: ${newCalendarID}`);
-    //     return newCalendarID;
-    // }
+          console.log('Event Created!');
+        } 
+        catch (e) {
+          console.log(e);
+        }
+    };
 
     const addReminder = async () => {
         console.log(sneaker?.name)
         console.log("Adding reminder...")
 
-        // try {
-        //     const calendarId = await createCalendar();
-            
-        //     const res = await createEventAsync(calendarId, 
-        //     {
-        //         endDate: getAppointementDate(startDate),
-        //         startDate: getAppointementDate(startDate),
-        //         title: 'Happy Birthday buddy ' + friendNameText,
-        //     });
-        //     console.log('Event Created!');
-        //   } 
-        //   catch (e) {
-        //     console.log(e);
-        //   }
-
         setReminder(true)
+        addNewEvent()
 
         const tx: SQLTransaction = await transaction()
         const res: SQLResultSet = await statement(
