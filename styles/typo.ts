@@ -31,4 +31,11 @@ export default StyleSheet.create({
         color: colors.gray,
         marginBottom: sizing.baseLine,
     },
+
+    errorText: {
+        fontFamily: 'OpenSans_400Regular',
+        fontSize: 16,
+        color: colors.error,
+        marginBottom: sizing.baseLine,
+    }
 })

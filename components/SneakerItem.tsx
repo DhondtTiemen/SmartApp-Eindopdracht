@@ -7,11 +7,37 @@ import { colors } from "../styles/colors"
 import typo from "../styles/typo"
 import utilities from "../styles/utilities"
 import { statement, transaction } from "../utils/database"
+import LottieView from 'lottie-react-native';
+import React, { useEffect, useRef, useState } from "react"
 
 export default ({ sneaker }: { sneaker?: any }) => {
+    const [inCollection, setInCollection] = useState<boolean>(sneaker.inCollection);
+    const animation = useRef(null)
+    const isFirstRun = useRef(true)
+
+    useEffect(() => {
+        if (isFirstRun.current) {
+            if (inCollection) {
+                animation.current.play(75, 75)
+            }
+            else {
+                animation.current.play(26, 26)
+            }
+            isFirstRun.current = false;
+        }
+        else if (inCollection) {
+            animation.current.play(26, 75)
+        }
+        else {
+            animation.current.play(75, 26)
+        }
+    }, [inCollection])
+
     const addToCollection = async () => {
         console.log(sneaker.name)
         console.log("Adding to collection...")
+
+        setInCollection(true)
 
         const tx: SQLTransaction = await transaction()
         const res: SQLResultSet = await statement(
@@ -24,6 +50,8 @@ export default ({ sneaker }: { sneaker?: any }) => {
     const removeFromCollection = async () => {
         console.log(sneaker.name)
         console.log("Removing from collection!")
+
+        setInCollection(false)
 
         const tx: SQLTransaction = await transaction()
         const res: SQLResultSet = await statement(
@@ -43,8 +71,18 @@ export default ({ sneaker }: { sneaker?: any }) => {
                         <Text style={typo.text}>{sneaker.name.length >= 25 ? `${sneaker?.name.substring(0, 20)}...` : sneaker?.name}</Text>
                     </View>
                 </View>
-                <Pressable onPress={sneaker?.inCollection == true ? removeFromCollection : addToCollection}>
-                    <Ionicons name={sneaker.inCollection == true ? "checkmark" : "add"} color={sneaker.inCollection == true ? colors.good : colors.gray} size={32}/>
+                <Pressable onPress={inCollection == true ? removeFromCollection : addToCollection}>
+                    <LottieView 
+                        ref={animation}
+                        style={{
+                            width: 75,
+                            height: 75
+                        }}
+                        source={require('../assets/Lottie/add.json')}
+                        autoPlay={false}
+                        loop={false}
+                    />
+                    {/* <Ionicons name={sneaker.inCollection == true ? "checkmark" : "add"} color={sneaker.inCollection == true ? colors.good : colors.gray} size={32}/> */}
                 </Pressable>
             </View>
         </ScrollView>

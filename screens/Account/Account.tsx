@@ -1,7 +1,7 @@
 import { Button, Image, Pressable, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native"
 
 import styling from '../../styles/typo';
-import { page } from "../../styles/page";
+import { styles } from "../../styles/page";
 import button from "../../styles/button";
 import account from "../../styles/account";
 import typo from "../../styles/typo";
@@ -31,7 +31,7 @@ export default () => {
     const [email, setEmail] = useState("tiemen.dhondt2@student.howest.be")
 
     return (
-        <SafeAreaView style={page}>
+        <SafeAreaView style={styles.container}>
             <View style={[button.upperRightButton, core.header]}>
                 <Text style={styling.header1}>Account: </Text>
                 <Pressable onPress={() => navigate("Settings")}>

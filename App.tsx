@@ -1,6 +1,17 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 
+//Kunnen reminder instellen
+//Kunnen kaart openen voor sneakers te kopen
+//Account pagina
+//Settings pagina
+//Animaties voor icons
+
+//Automatische refresh
+//Detail pagina voor alle sneakers
+
+//Login met firebase
+
 //Fonts
 import AppLoading from 'expo-app-loading';
 import {

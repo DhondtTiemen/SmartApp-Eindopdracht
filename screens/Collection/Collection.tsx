@@ -16,6 +16,7 @@ import { colors } from "../../styles/colors";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import search from "../../styles/searchBar";
+import typo from "../../styles/typo";
 
 export default ({ navigation }: {navigation: any}) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
@@ -69,25 +70,50 @@ export default ({ navigation }: {navigation: any}) => {
         getSneakers();
     }
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <View style={core.header}>
-                <View style={button.upperRightButton}>
-                    <Text style={styling.header1}>Collection: </Text>
-                    <Pressable onPress={() => navigate("AllSneakers")}>
-                        <Ionicons name="add" color={colors.gray} size={32} />
-                    </Pressable>
+    if (sneakers.length == 0) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <View style={core.header}>
+                    <View style={button.upperRightButton}>
+                        <Text style={styling.header1}>Collection: </Text>
+                        <Pressable onPress={() => navigate("AllSneakers")}>
+                            <Ionicons name="add" color={colors.gray} size={32} />
+                        </Pressable>
+                    </View>
+    
+                    {/* Searchbar */}
+                    <View style={search.bar}>
+                        <Ionicons name="search" size={16} color={colors.gray}/>
+                        <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInCollection}/>
+                    </View>
                 </View>
 
-                {/* Searchbar */}
-                <View style={search.bar}>
-                    <Ionicons name="search" size={16} color={colors.gray}/>
-                    <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInCollection}/>
+                <Text style={typo.errorText}>There are no sneakers in your collection...</Text>
+            </SafeAreaView>
+        )
+    }
+    else {
+        return (
+            <SafeAreaView style={styles.container}>
+                <View style={core.header}>
+                    <View style={button.upperRightButton}>
+                        <Text style={styling.header1}>Collection: </Text>
+                        <Pressable onPress={() => navigate("AllSneakers")}>
+                            <Ionicons name="add" color={colors.gray} size={32} />
+                        </Pressable>
+                    </View>
+    
+                    {/* Searchbar */}
+                    <View style={search.bar}>
+                        <Ionicons name="search" size={16} color={colors.gray}/>
+                        <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInCollection}/>
+                    </View>
                 </View>
-            </View>
+    
+                {/* Flatlist */}
+                <FlatList data={sneakers} renderItem={renderSneaker} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}/>
+            </SafeAreaView>
+        )
+    }
 
-            {/* Flatlist */}
-            <FlatList data={sneakers} renderItem={renderSneaker} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}/>
-        </SafeAreaView>
-    )
 }

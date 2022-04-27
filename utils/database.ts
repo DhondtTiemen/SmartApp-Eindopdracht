@@ -113,13 +113,27 @@ export const dummyData = async () => {
         tx8,
         `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('1531351351', 'Comme des Garcons Play x Converse', 'Chuck 70 High Top (Black)', 140, 'https://sneakernews.com/wp-content/uploads/2018/08/converse-cdg-play-chuck-70-available-2.jpg', 'When it comes to Converse collaborations, it’s safe to say that nothing is more well-known and omnipresent than Comme des GARÇONS‘ heart-adorned take on the Converse Chuck 70. The shoes feature a simple base — black or white canvas upper with contrasting heel stripe, white rubber toe cap, off-white midsole — but their instantly recognizable detailing arrives via the upper two-thirds of CDG’s iconic heart graphic on the lateral midfoot, cheekily peeking over the midsole’s edge.', true, "2018-03-31", false)`,
     )
-    console.log(insert8);    
+    console.log(insert8); 
+
+    const tx9: SQLTransaction = await transaction();
+    const insert9: SQLResultSet | void = await statement(
+        tx9,
+        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('464864231', 'Pharrel x Adidas HU', 'NMD', 220, 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/116609fda98548d2b2b3ac1a01123b18_9366/Pharrell_Williams_Hu_NMD_Schoenen_zwart_GX2487_01_standard.jpg', 'Een nieuwe kijk op de toekomst. De nu iconische HU NMD schoen krijgt een opvallende make-over van de niet in een hokje te stoppen designer Pharrell Williams. Het gestroomlijnde model heeft een subtiel design dat frisse energie uitstraalt. Het flexibele adidas Primeknit-bovenwerk en de Boost-demping houden je van begin tot eind comfortabel.', true, "2022-04-27", false)`,
+    )
+    console.log(insert9);    
+
+    const tx10: SQLTransaction = await transaction();
+    const insert10: SQLResultSet | void = await statement(
+        tx10,
+        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('577844351', 'Nike', 'Dunk Low Next Nature', 105, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/2867cc68cec43f33ef011d55b2cdabd9_1633356353.png', 'Although old and new Nike Dunk Low-enthusiasts alike have expressed frustration with the model’s accessibility via the Nike SNKRS app, many have been able to add a classic “White/Black” option to their rotations. Most recently, the highly-coveted (and decently-common) proposition has re-appeared, only this time with upcycled materials as part of the Swoosh’s Next Nature program.', true, "2022-05-05", false)`,
+    )
+    console.log(insert10);    
 
     //Data bekijken
     console.log('Data bekijken');
-    const tx9: SQLTransaction = await transaction();
+    const tx11: SQLTransaction = await transaction();
     const read: SQLResultSet | void = await statement(
-        tx9,
+        tx11,
         `SELECT * FROM 'tblSneaker'`,
     )
     console.log(read);

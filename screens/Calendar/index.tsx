@@ -1,6 +1,6 @@
 import { createStackNavigator, StackNavigationOptions } from "@react-navigation/stack"
 
-import Overview from "./Overview"
+import Overview from "./Calendar"
 import { DetailRelease } from "./Detail"
 
 import { colors } from "../../styles/colors"
