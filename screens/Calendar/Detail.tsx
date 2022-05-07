@@ -38,7 +38,7 @@ export const DetailRelease = ({ route }: { route: any }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={[core.header, button.upperLeftButton]}>
-                <Ionicons style={utilities.marginRightMd} color={colors.gray} name="arrow-back" size={32} onPress={() => navigate("Calendar")}/>
+                <Ionicons style={utilities.marginRightMd} color={colors.gray} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
                 <Text style={typo.header2}>{selectedSneaker.name.length >= 30 ? `${selectedSneaker.name.substring(0, 25)}...` : selectedSneaker.name}</Text>
             </View>
             {/* Sneaker info */}

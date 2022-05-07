@@ -104,7 +104,7 @@ export const dummyData = async () => {
     const tx7: SQLTransaction = await transaction();
     const insert7: SQLResultSet | void = await statement(
         tx7,
-        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('3151351', 'Billie Eilish x Nike', 'Air Force 1 High "Mushroom"', 170, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/b4cae917611dc238fc543bcd9c3a0575_1649387762.jpeg', 'Grammy Award-winning pop artist Billie Eilish has had quite an unpredictable start to her tenure as an official creative partner of the Nike, Inc. brands. Starting off with Jordan Brand, she touched on the Air Jordan 15 in a tonal beige set-up, while contrasting that drab aesthetic with an all-green Air Jordan 1 KO. While her next shoe collaboration is a far less uncommon silhouette, she’s added quite an unprecedented touch to the model, giving it new life — while welcoming some polarizing response.', false, "2022-04-25", false)`,
+        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('3151351', 'Billie Eilish x Nike', 'Air Force 1 High "Mushroom"', 170, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/b4cae917611dc238fc543bcd9c3a0575_1649387762.jpeg', 'Grammy Award-winning pop artist Billie Eilish has had quite an unpredictable start to her tenure as an official creative partner of the Nike, Inc. brands. Starting off with Jordan Brand, she touched on the Air Jordan 15 in a tonal beige set-up, while contrasting that drab aesthetic with an all-green Air Jordan 1 KO. While her next shoe collaboration is a far less uncommon silhouette, she’s added quite an unprecedented touch to the model, giving it new life — while welcoming some polarizing response.', false, "2022-06-25", false)`,
     )
     console.log(insert7);
 
@@ -118,14 +118,14 @@ export const dummyData = async () => {
     const tx9: SQLTransaction = await transaction();
     const insert9: SQLResultSet | void = await statement(
         tx9,
-        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('464864231', 'Pharrel x Adidas HU', 'NMD', 220, 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/116609fda98548d2b2b3ac1a01123b18_9366/Pharrell_Williams_Hu_NMD_Schoenen_zwart_GX2487_01_standard.jpg', 'Een nieuwe kijk op de toekomst. De nu iconische HU NMD schoen krijgt een opvallende make-over van de niet in een hokje te stoppen designer Pharrell Williams. Het gestroomlijnde model heeft een subtiel design dat frisse energie uitstraalt. Het flexibele adidas Primeknit-bovenwerk en de Boost-demping houden je van begin tot eind comfortabel.', true, "2022-04-27", false)`,
+        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('464864231', 'Pharrel x Adidas HU', 'NMD', 220, 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/116609fda98548d2b2b3ac1a01123b18_9366/Pharrell_Williams_Hu_NMD_Schoenen_zwart_GX2487_01_standard.jpg', 'Een nieuwe kijk op de toekomst. De nu iconische HU NMD schoen krijgt een opvallende make-over van de niet in een hokje te stoppen designer Pharrell Williams. Het gestroomlijnde model heeft een subtiel design dat frisse energie uitstraalt. Het flexibele adidas Primeknit-bovenwerk en de Boost-demping houden je van begin tot eind comfortabel.', true, "2022-05-27", false)`,
     )
     console.log(insert9);    
 
     const tx10: SQLTransaction = await transaction();
     const insert10: SQLResultSet | void = await statement(
         tx10,
-        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('577844351', 'Nike', 'Dunk Low Next Nature', 105, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/2867cc68cec43f33ef011d55b2cdabd9_1633356353.png', 'Although old and new Nike Dunk Low-enthusiasts alike have expressed frustration with the model’s accessibility via the Nike SNKRS app, many have been able to add a classic “White/Black” option to their rotations. Most recently, the highly-coveted (and decently-common) proposition has re-appeared, only this time with upcycled materials as part of the Swoosh’s Next Nature program.', true, "2022-05-05", false)`,
+        `INSERT INTO 'tblSneaker' (id, brand, name, price, url, description, reminder, releaseDate, inCollection) VALUES ('577844351', 'Nike', 'Dunk Low Next Nature', 105, 'https://s3.amazonaws.com/images.kicksfinder.com/products/thumbs/2867cc68cec43f33ef011d55b2cdabd9_1633356353.png', 'Although old and new Nike Dunk Low-enthusiasts alike have expressed frustration with the model’s accessibility via the Nike SNKRS app, many have been able to add a classic “White/Black” option to their rotations. Most recently, the highly-coveted (and decently-common) proposition has re-appeared, only this time with upcycled materials as part of the Swoosh’s Next Nature program.', true, "2022-05-12", false)`,
     )
     console.log(insert10);    
 

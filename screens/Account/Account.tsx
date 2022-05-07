@@ -19,10 +19,12 @@ export default () => {
 
     const triggerLogOut = () => {
         console.log("Logging out...")
+        navigate('Login')
     }
 
     const triggerDeleteAccount = () => {
         console.log("Deleting account...")
+        navigate('Login')
     }
 
     //UseStates

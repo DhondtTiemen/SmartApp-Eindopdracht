@@ -1,16 +1,7 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 
-//Kunnen reminder instellen
-//Kunnen kaart openen voor sneakers te kopen
-//Account pagina
 //Settings pagina
-//Animaties voor icons
-
-//Automatische refresh
-//Detail pagina voor alle sneakers
-
-//Login met firebase
 
 //Fonts
 import AppLoading from 'expo-app-loading';
@@ -26,12 +17,18 @@ import {
   OpenSans_400Regular,
 } from '@expo-google-fonts/open-sans';
 
-import AppNavigation from './screens/AppNavigation';
 import { StatusBar } from 'react-native';
 import { useEffect } from 'react';
 import { dummyData } from './utils/database';
+import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
+
+import Login from './screens/Authentication/Login';
+import AppNavigation from './screens/AppNavigation';
+import { colors } from './styles/colors';
 
 export default function App() {
+  const Stack = createStackNavigator()
+
   const [fontsLoaded, error] = useFonts({
     Inter_400Regular,
     Inter_300Light,
@@ -44,18 +41,35 @@ export default function App() {
     // dummyData()
   }, [])
 
+  const screenOptions : StackNavigationOptions = {
+    headerShown: false,
+
+    cardStyle: {
+        backgroundColor: colors.white,
+    }
+  }
+
   if (!fontsLoaded) {
     return <AppLoading />
   }
   else {
+    // return (
+    //   <NavigationContainer>
+    //     <SafeAreaProvider>
+    //       <StatusBar />
+
+    //       <AppNavigation />
+    //     </SafeAreaProvider>
+    //   </NavigationContainer>
+    // );
+
     return (
       <NavigationContainer>
-        <SafeAreaProvider>
-          <StatusBar />
-
-          <AppNavigation />
-        </SafeAreaProvider>
+        <Stack.Navigator initialRouteName='Login' screenOptions={screenOptions}>
+          <Stack.Screen name='Login' component={Login}/>
+          <Stack.Screen name='Home' component={AppNavigation}/>
+        </Stack.Navigator>
       </NavigationContainer>
-    );
+    )
   }
 }

@@ -9,8 +9,12 @@ import utilities from "../styles/utilities"
 import { statement, transaction } from "../utils/database"
 import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef, useState } from "react"
+import { ParamListBase, useNavigation } from "@react-navigation/native"
+import { StackNavigationProp } from "@react-navigation/stack"
 
 export default ({ sneaker }: { sneaker?: any }) => {
+    const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
+
     const [inCollection, setInCollection] = useState<boolean>(sneaker.inCollection);
     const animation = useRef(null)
     const isFirstRun = useRef(true)
@@ -63,7 +67,7 @@ export default ({ sneaker }: { sneaker?: any }) => {
 
     return (
         <ScrollView style={card.holder}>
-            <View style={utilities.flexSpaceBetween}>
+            <Pressable style={utilities.flexSpaceBetween} onPress={() => navigate("Detailcollection", sneaker)}>
                 <View style={button.upperRightButton}>
                     <Image style={[card.imageSmall, utilities.marginRightMd]} source={{uri: `${sneaker.url}`}}/>
                     <View>
@@ -84,7 +88,7 @@ export default ({ sneaker }: { sneaker?: any }) => {
                     />
                     {/* <Ionicons name={sneaker.inCollection == true ? "checkmark" : "add"} color={sneaker.inCollection == true ? colors.good : colors.gray} size={32}/> */}
                 </Pressable>
-            </View>
+            </Pressable>
         </ScrollView>
     )
 }
