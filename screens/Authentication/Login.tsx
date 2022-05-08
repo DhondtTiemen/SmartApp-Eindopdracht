@@ -1,18 +1,25 @@
+import { useState } from "react"
+import { KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { ParamListBase, useNavigation } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { useState } from "react"
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableOpacityBase, View } from "react-native"
 
 import { authentication } from "../../utils/firebase"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+//Styling
+import { colors } from "../../styles/colors"
+import { typo } from "../../styles/typo"
+import core from "../../styles/core"
+import utilities from "../../styles/utilities"
+import button from "../../styles/button"
 
 
 export default () => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
     
-    const [isSignedIn, setIsSignedIn] = useState<boolean>(false)
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [isSignedIn, setIsSignedIn] = useState<boolean>(false)
 
     const registerUser = () => {
         console.log('Registreren')
@@ -42,73 +49,22 @@ export default () => {
     }
     
     return (
-        <KeyboardAvoidingView style={styles.container} behavior='padding'>
-            <View style={styles.inputContainer}>
-                <TextInput placeholder='Email' value={email} onChangeText={text => setEmail(text)} style={styles.input}/>
-                <TextInput placeholder='Password' value={password} onChangeText={text => setPassword(text)} style={styles.input} secureTextEntry={true}/>
+        <KeyboardAvoidingView style={[core.container, utilities.center]} behavior='padding'>
+            <View>
+                <Text style={[typo.header, typo.header1]}>Sneakers App</Text>
             </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={signInUser} style={styles.button}>
-                    <Text style={styles.buttonText}>Login</Text>
+            <View style={utilities.width80}>
+                <TextInput placeholder='Email' value={email} onChangeText={text => setEmail(text)} style={core.input} placeholderTextColor={colors.grey[100]}/>
+                <TextInput placeholder='Password' value={password} onChangeText={text => setPassword(text)} style={core.input} secureTextEntry={true} placeholderTextColor={colors.grey[100]}/>
+            </View>
+            <View style={[utilities.width80, utilities.marginTopLg]}>
+                <TouchableOpacity onPress={signInUser} style={button.primaryButton}>
+                    <Text style={button.primaryButtonText}>Login</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={registerUser} style={[styles.button, styles.buttonOutline]}>
-                    <Text style={styles.buttonOutlineText}>Register</Text>
+                <TouchableOpacity onPress={registerUser} style={[button.primaryButton, button.secondaryButton, utilities.marginTopSm]}>
+                    <Text style={[button.primaryButtonText, button.secondaryButtonText]}>Register</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-
-    inputContainer: {
-        width: '80%',
-    },
-
-    input: {
-        backgroundColor: 'white',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        borderRadius: 10,
-        marginTop: 5,
-    },
-
-    buttonContainer: {
-        width: '60%',
-        alignItems: "center",
-        marginTop: 40,
-    },
-
-    button: {
-        backgroundColor: '#0782F9',
-        width: '100%',
-        padding: 15,
-        borderRadius: 10,
-        alignItems: 'center'
-    },
-
-    buttonOutline: {
-        backgroundColor: 'white',
-        marginTop: 5,
-        borderColor: '#0782F9',
-        borderWidth: 2,
-    },
-
-    buttonText: {
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-
-
-    buttonOutlineText: {
-        color: '#0782F9',
-        fontWeight: '700',
-        fontSize: 16,
-    },
-})

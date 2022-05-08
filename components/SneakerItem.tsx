@@ -1,16 +1,19 @@
-import { Ionicons } from "@expo/vector-icons"
-import { SQLResultSet, SQLTransaction } from "expo-sqlite"
-import { Image, Pressable, ScrollView, Text, View } from "react-native"
-import button from "../styles/button"
-import card from "../styles/card"
-import { colors } from "../styles/colors"
-import typo from "../styles/typo"
-import utilities from "../styles/utilities"
-import { statement, transaction } from "../utils/database"
-import LottieView from 'lottie-react-native';
 import React, { useEffect, useRef, useState } from "react"
+import { Image, Pressable, ScrollView, Text, View } from "react-native"
 import { ParamListBase, useNavigation } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
+
+import { SQLResultSet, SQLTransaction } from "expo-sqlite"
+import { statement, transaction } from "../utils/database"
+
+import LottieView from 'lottie-react-native';
+
+//Styling
+import {typo} from "../styles/typo"
+import core from "../styles/core"
+import card from "../styles/card"
+import button from "../styles/button"
+import utilities from "../styles/utilities"
 
 export default ({ sneaker }: { sneaker?: any }) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
@@ -78,10 +81,7 @@ export default ({ sneaker }: { sneaker?: any }) => {
                 <Pressable onPress={inCollection == true ? removeFromCollection : addToCollection}>
                     <LottieView 
                         ref={animation}
-                        style={{
-                            width: 75,
-                            height: 75
-                        }}
+                        style={core.lottie}
                         source={require('../assets/Lottie/add.json')}
                         autoPlay={false}
                         loop={false}

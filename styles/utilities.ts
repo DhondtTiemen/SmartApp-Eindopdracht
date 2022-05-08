@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { sizing } from "./page";
+import { sizing } from "./core";
 
 export default StyleSheet.create({
     marginTopSm: {
@@ -9,6 +9,10 @@ export default StyleSheet.create({
 
     marginTopMd: {
         marginTop: sizing.baseLine * 2,
+    },
+
+    marginTopLg: {
+        marginTop: sizing.baseLine * 3,
     },
 
     marginBottomSm: {
@@ -21,6 +25,14 @@ export default StyleSheet.create({
 
     marginLeftSm: {
         marginLeft: sizing.baseLine,
+    },
+
+    marginLeftMd: {
+        marginLeft: sizing.baseLine * 2,
+    },
+
+    marginLeftLg: {
+        marginLeft: sizing.baseLine * 3,
     },
 
     marginRightMd: {
@@ -40,7 +52,14 @@ export default StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+    },
+
+    center: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    width80: {
+        width: '80%',
     }
-
-
 }) 

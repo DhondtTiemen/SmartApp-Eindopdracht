@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "./colors";
-import { sizing } from "./page";
+import { sizing } from "./core";
 
 export default StyleSheet.create({
     imageHolder: {

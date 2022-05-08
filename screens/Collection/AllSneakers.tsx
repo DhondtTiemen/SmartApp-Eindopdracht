@@ -1,20 +1,23 @@
-import { Ionicons } from "@expo/vector-icons"
+import { useEffect, useState } from "react"
+import { SafeAreaView, Text, TextInput, View } from "react-native"
 import { ParamListBase, useNavigation } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native"
-import { colors } from "../../styles/colors"
-import core from "../../styles/core"
-import {  sizing, styles } from "../../styles/page"
-import utilities from "../../styles/utilities"
-import styling from '../../styles/typo';
-import button from "../../styles/button"
-import SearchBar from "../../components/SearchBar"
 import { FlatList } from "react-native-gesture-handler"
-import { useEffect, useState } from "react"
+
 import { SQLResultSet, SQLTransaction } from "expo-sqlite"
 import { statement, transaction } from "../../utils/database"
+
+import { Ionicons } from "@expo/vector-icons"
+
 import SneakerItem from "../../components/SneakerItem"
+
+//Styling
+import { colors } from "../../styles/colors"
+import { typo } from "../../styles/typo"
+import core from "../../styles/core"
+import button from "../../styles/button"
 import search from "../../styles/searchBar"
+import utilities from "../../styles/utilities"
 
 export const AllSneakers = () => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
@@ -63,17 +66,17 @@ export const AllSneakers = () => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={core.container}>
             <View style={core.header}>
                 <View style={button.upperLeftButton}>
-                    <Ionicons style={utilities.marginRightMd} color={colors.gray} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
-                    <Text style={styling.header2}>Add Sneaker: </Text>
+                    <Ionicons style={utilities.marginRightMd} color={colors.grey[500]} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
+                    <Text style={[typo.header, typo.header2]}>Add Sneaker: </Text>
                 </View>
 
                 {/* Searchbar */}
                 <View style={search.bar}>
-                    <Ionicons name="search" size={16} color={colors.gray}/>
-                    <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInAll}/>
+                    <Ionicons name="search" size={16} color={colors.grey[500]}/>
+                    <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.grey[500]} onChangeText={searchSneakerInAll}/>
                 </View>
             </View>
 

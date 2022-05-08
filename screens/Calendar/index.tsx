@@ -3,6 +3,7 @@ import { createStackNavigator, StackNavigationOptions } from "@react-navigation/
 import Overview from "./Calendar"
 import { DetailRelease } from "./Detail"
 
+//Styling
 import { colors } from "../../styles/colors"
 
 export default () => {
@@ -12,7 +13,7 @@ export default () => {
         headerShown: false,
 
         cardStyle: {
-            backgroundColor: colors.white,
+            backgroundColor: colors.light,
         }
     }
 

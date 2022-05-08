@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "./colors";
-import { sizing } from "./page";
+import { sizing } from "./core";
 
 export default StyleSheet.create({
     bar: {
@@ -10,13 +10,13 @@ export default StyleSheet.create({
 
         paddingBottom: sizing.baseLine,
         borderBottomWidth: 1,
-        borderBottomColor: colors.gray,
+        borderBottomColor: colors.grey[500],
         marginBottom: sizing.baseLine * 2,
     },
 
     input: {
-        backgroundColor: colors.white,
-        color: colors.black,
+        backgroundColor: colors.light,
+        color: colors.dark,
         borderRadius: 10,
         marginVertical: 8,
         marginRight: sizing.baseLine,

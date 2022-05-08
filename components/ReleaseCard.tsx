@@ -3,13 +3,15 @@ import { Image, Platform, Pressable, Text, View } from "react-native"
 import { useNavigation, ParamListBase } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 
-import { SQLResultSet, SQLTransaction } from "expo-sqlite"
 import LottieView from 'lottie-react-native';
-import { CalendarAccessLevel, createCalendarAsync, createEventAsync, deleteEventAsync, EntityTypes, getCalendarsAsync, requestCalendarPermissionsAsync } from "expo-calendar"
 
+import { SQLResultSet, SQLTransaction } from "expo-sqlite"
 import { statement, transaction } from "../utils/database"
 
-import typo from "../styles/typo"
+import { createEventAsync } from "expo-calendar"
+
+//Styling
+import { typo } from "../styles/typo"
 import card from "../styles/card"
 import utilities from "../styles/utilities"
 
@@ -90,9 +92,9 @@ export default ({ sneaker, calendarId }: { sneaker: Sneaker, calendarId: string 
             <Image style={card.image} source={{uri: `${sneaker?.url}`}} />
             <View style={card.body}>
                 <View>
-                    <Text style={[typo.header3, utilities.marginTopMd]}>{sneaker?.brand}</Text>
-                    <Text style={typo.header2}>{sneaker.name.length >= 30 ? `${sneaker?.name.substring(0, 25)}...` : sneaker?.name}</Text>
-                    <Text style={typo.header3}>Release: {sneaker?.releaseDate}</Text>
+                    <Text style={[typo.header, typo.header3, utilities.marginTopMd]}>{sneaker?.brand}</Text>
+                    <Text style={[typo.header, typo.header2]}>{sneaker.name.length >= 30 ? `${sneaker?.name.substring(0, 25)}...` : sneaker?.name}</Text>
+                    <Text style={[typo.header, typo.header3]}>Release: {sneaker?.releaseDate}</Text>
                 </View>
                 <Pressable onPress={reminder == true ? removeReminder : addReminder}>
                     <LottieView 
@@ -105,9 +107,9 @@ export default ({ sneaker, calendarId }: { sneaker: Sneaker, calendarId: string 
                         autoPlay={false}
                         loop={false}
                     />
-                    {/* <Ionicons style={utilities.marginRightMd} name={sneaker?.reminder == true ? "ios-notifications" : "ios-notifications-outline"} color={colors.gray} size={32}/> */}
                 </Pressable>
             </View>
         </Pressable>
     )
 }
+{/* <Ionicons style={utilities.marginRightMd} name={sneaker?.reminder == true ? "ios-notifications" : "ios-notifications-outline"} color={colors.gray} size={32}/> */}

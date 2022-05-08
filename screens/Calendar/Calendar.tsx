@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, ScrollView, StyleSheet, RefreshControl, Platform } from "react-native"
+import { Text, SafeAreaView, View, RefreshControl, Platform } from "react-native"
 import { FlatList } from "react-native-gesture-handler";
-import { SQLResultSet, SQLTransaction } from "expo-sqlite";
+import RNPickerSelect from 'react-native-picker-select';
 
+import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 import { statement, transaction } from "../../utils/database";
+
+import { CalendarAccessLevel, createCalendarAsync, EntityTypes, getCalendarsAsync, requestCalendarPermissionsAsync } from "expo-calendar";
 
 import Card from "../../components/ReleaseCard";
 
-import styling from '../../styles/typo';
-import { styles, sizing } from "../../styles/page";
-import core from "../../styles/core";
-import { colors } from "../../styles/colors";
 import { Ionicons } from "@expo/vector-icons";
-import RNPickerSelect from 'react-native-picker-select';
-import filter from "../../styles/filterBar";
-import utilities from "../../styles/utilities";
-import typo from "../../styles/typo";
-import { CalendarAccessLevel, createCalendarAsync, EntityTypes, getCalendarsAsync, requestCalendarPermissionsAsync } from "expo-calendar";
 
+//Styling
+import { colors } from "../../styles/colors";
+import { typo } from "../../styles/typo";
+import core from "../../styles/core";
+import utilities from "../../styles/utilities";
+import filter from "../../styles/filterBar";
 
 export default ({ navigation }: {navigation: any}) => {
     const [sneakers, setSneakers] = useState<any[]>([])
@@ -147,13 +147,13 @@ export default ({ navigation }: {navigation: any}) => {
 
     if (sneakers.length == 0) {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={core.container}>
                 <View style={core.header}>
-                    <Text style={styling.header1}>Calendar</Text>
+                    <Text style={[typo.header, typo.header1]}>Calendar</Text>
     
                     {/* Filter bar */}
                     <View style={filter.bar}>
-                        <Ionicons style={utilities.marginRightMd} name="chevron-down" size={16} color={colors.gray}/>
+                        <Ionicons style={utilities.marginRightMd} name="chevron-down" size={16} color={colors.grey[500]}/>
                         <View style={filter.input}>
                             <RNPickerSelect
                                 placeholder={{ label: "Choose a brand", value: null }}
@@ -174,13 +174,13 @@ export default ({ navigation }: {navigation: any}) => {
     }
     else {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={core.container}>
                 <View style={core.header}>
-                    <Text style={styling.header1}>Calendar</Text>
+                    <Text style={[typo.header, typo.header1]}>Calendar</Text>
     
                     {/* Filter bar */}
                     <View style={filter.bar}>
-                        <Ionicons style={utilities.marginRightMd} name="chevron-down" size={16} color={colors.gray}/>
+                        <Ionicons style={utilities.marginRightMd} name="chevron-down" size={16} color={colors.grey[500]}/>
                         <View style={filter.input}>
                             <RNPickerSelect
                                 placeholder={{ label: "Choose a brand", value: null }}

@@ -1,22 +1,22 @@
-import { useCallback, useEffect, useState } from "react";
-import { Text, SafeAreaView, View, Pressable, TextInput, StyleSheet, RefreshControl } from "react-native";
+import { useEffect, useState } from "react";
+import { Text, SafeAreaView, View, Pressable, TextInput, RefreshControl } from "react-native";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { FlatList } from "react-native-gesture-handler";
-import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 
+import { SQLResultSet, SQLTransaction } from "expo-sqlite";
 import { statement, transaction } from "../../utils/database";
+
+import { Ionicons } from "@expo/vector-icons";
 
 import Card from "../../components/CollectionCard";
 
-import { sizing, styles } from "../../styles/page"
-import styling from '../../styles/typo';
-import core from "../../styles/core";
-import { Ionicons } from "@expo/vector-icons";
-import button from "../../styles/button";
+//Styling
 import { colors } from "../../styles/colors";
-import { ParamListBase, useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { typo } from "../../styles/typo";
+import core from "../../styles/core";
+import button from "../../styles/button";
 import search from "../../styles/searchBar";
-import typo from "../../styles/typo";
 
 export default ({ navigation }: {navigation: any}) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
@@ -72,19 +72,19 @@ export default ({ navigation }: {navigation: any}) => {
 
     if (sneakers.length == 0) {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={core.container}>
                 <View style={core.header}>
                     <View style={button.upperRightButton}>
-                        <Text style={styling.header1}>Collection: </Text>
+                        <Text style={[typo.header, typo.header1]}>Collection: </Text>
                         <Pressable onPress={() => navigate("AllSneakers")}>
-                            <Ionicons name="add" color={colors.gray} size={32} />
+                            <Ionicons name="add" color={colors.grey[500]} size={32} />
                         </Pressable>
                     </View>
     
                     {/* Searchbar */}
                     <View style={search.bar}>
-                        <Ionicons name="search" size={16} color={colors.gray}/>
-                        <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInCollection}/>
+                        <Ionicons name="search" size={16} color={colors.grey[500]}/>
+                        <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.grey[500]} onChangeText={searchSneakerInCollection}/>
                     </View>
                 </View>
 
@@ -94,19 +94,19 @@ export default ({ navigation }: {navigation: any}) => {
     }
     else {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={core.container}>
                 <View style={core.header}>
                     <View style={button.upperRightButton}>
-                        <Text style={styling.header1}>Collection: </Text>
+                        <Text style={[typo.header, typo.header1]}>Collection: </Text>
                         <Pressable onPress={() => navigate("AllSneakers")}>
-                            <Ionicons name="add" color={colors.gray} size={32} />
+                            <Ionicons name="add" color={colors.grey[500]} size={32} />
                         </Pressable>
                     </View>
     
                     {/* Searchbar */}
                     <View style={search.bar}>
-                        <Ionicons name="search" size={16} color={colors.gray}/>
-                        <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.gray} onChangeText={searchSneakerInCollection}/>
+                        <Ionicons name="search" size={16} color={colors.grey[500]}/>
+                        <TextInput style={search.input} placeholder={'Search sneaker'} placeholderTextColor={colors.grey[500]} onChangeText={searchSneakerInCollection}/>
                     </View>
                 </View>
     

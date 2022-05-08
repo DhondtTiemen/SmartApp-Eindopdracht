@@ -4,6 +4,7 @@ import Overview from "./Collection";
 import { DetailCollection } from "./Detail";
 import { AllSneakers } from "./AllSneakers";
 
+//Styling
 import { colors } from "../../styles/colors";
 
 export default () => {
@@ -14,7 +15,7 @@ export default () => {
         headerShown: false,
 
         cardStyle: {
-            backgroundColor: colors.white,
+            backgroundColor: colors.light,
         }
     }
 

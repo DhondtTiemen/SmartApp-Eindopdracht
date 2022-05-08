@@ -1,17 +1,21 @@
-import { Ionicons } from "@expo/vector-icons"
-import { ParamListBase, useNavigation } from "@react-navigation/native"
-import { StackNavigationProp } from "@react-navigation/stack"
-import { SQLResultSet, SQLTransaction } from "expo-sqlite"
 import { useEffect, useState } from "react"
 import { SafeAreaView, Text, View } from "react-native"
-import ReleaseSneakerCard from "../../components/ReleaseSneakerCard"
-import button from "../../styles/button"
-import { colors } from "../../styles/colors"
-import core from "../../styles/core"
-import { detail, styles } from "../../styles/page"
-import typo from "../../styles/typo"
-import utilities from "../../styles/utilities"
+import { ParamListBase, useNavigation } from "@react-navigation/native"
+import { StackNavigationProp } from "@react-navigation/stack"
+
+import { SQLResultSet, SQLTransaction } from "expo-sqlite"
 import { statement, transaction } from "../../utils/database"
+
+import { Ionicons } from "@expo/vector-icons"
+
+import ReleaseSneakerCard from "../../components/ReleaseSneakerCard"
+
+//Styling
+import { colors } from "../../styles/colors"
+import { typo } from "../../styles/typo"
+import core from "../../styles/core"
+import button from "../../styles/button"
+import utilities from "../../styles/utilities"
 
 export const DetailRelease = ({ route }: { route: any }) => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
@@ -36,9 +40,9 @@ export const DetailRelease = ({ route }: { route: any }) => {
     }, [])
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={core.container}>
             <View style={[core.header, button.upperLeftButton]}>
-                <Ionicons style={utilities.marginRightMd} color={colors.gray} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
+                <Ionicons style={utilities.marginRightMd} color={colors.grey[500]} name="arrow-back" size={32} onPress={() => navigate("Overview")}/>
                 <Text style={typo.header2}>{selectedSneaker.name.length >= 30 ? `${selectedSneaker.name.substring(0, 25)}...` : selectedSneaker.name}</Text>
             </View>
             {/* Sneaker info */}

@@ -1,14 +1,15 @@
 import { Ionicons } from "@expo/vector-icons"
-import { ParamListBase, useNavigation } from "@react-navigation/native"
-import { StackNavigationProp } from "@react-navigation/stack"
-import { SQLResultSet, SQLTransaction } from "expo-sqlite"
 import { Image, Pressable, ScrollView, Share, Text, View } from "react-native"
-import button from "../styles/button"
-import card from "../styles/card"
-import { colors } from "../styles/colors"
-import typo from "../styles/typo"
-import utilities from "../styles/utilities"
+
+import { SQLResultSet, SQLTransaction } from "expo-sqlite"
 import { statement, transaction } from "../utils/database"
+
+//Styling
+import { colors } from "../styles/colors"
+import { typo } from "../styles/typo"
+import card from "../styles/card"
+import button from "../styles/button"
+import utilities from "../styles/utilities"
 
 export default ({ sneaker }: { sneaker?: any }) => {
     
@@ -55,12 +56,12 @@ export default ({ sneaker }: { sneaker?: any }) => {
                 <Text style={typo.header3}>€{selectedSneaker?.price}</Text>
                 <Text style={typo.text}>{selectedSneaker?.description}</Text>
             </View>
-            <Pressable style={button.button} onPress={selectedSneaker?.reminder == true ? removeReminder : setReminder}>
-                <Ionicons style={utilities.marginRightMd} color={colors.gray} name={selectedSneaker?.reminder == true ? "ios-notifications" : "ios-notifications-outline"} size={32}/>
+            <Pressable style={button.buttonDetail} onPress={selectedSneaker?.reminder == true ? removeReminder : setReminder}>
+                <Ionicons style={utilities.marginRightMd} color={colors.grey[500]} name={selectedSneaker?.reminder == true ? "ios-notifications" : "ios-notifications-outline"} size={32}/>
                 <Text style={[typo.header3, utilities.marginTopSm]}>Add reminder</Text>
             </Pressable>
-            <Pressable style={button.button} onPress={share}>
-                <Ionicons style={utilities.marginRightMd} color={colors.gray} name="share" size={32}/>
+            <Pressable style={button.buttonDetail} onPress={share}>
+                <Ionicons style={utilities.marginRightMd} color={colors.grey[500]} name="share" size={32}/>
                 <Text style={[typo.header3, utilities.marginTopSm]}>Share</Text>
             </Pressable>
         </ScrollView>
