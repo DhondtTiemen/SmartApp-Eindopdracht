@@ -21,11 +21,6 @@ export default () => {
         navigate('Login')
     }
 
-    const triggerDeleteAccount = () => {
-        console.log("Deleting account...")
-        navigate('Login')
-    }
-
     //UseStates
     const [firstName, setFirstName] = useState("Tiemen")
     const [lastName, setLastName] = useState("Dhondt")
@@ -57,7 +52,6 @@ export default () => {
 
             <View style={core.footer}>                
                 <Button color={colors.actions.error} onPress={triggerLogOut} title="Log out"/>
-                <Button color={colors.actions.error} onPress={triggerDeleteAccount} title="Delete Account"/>
             </View>
         </SafeAreaView>
     )

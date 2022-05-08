@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, View } from "react-native"
+import { SafeAreaView, Text, View, Button } from "react-native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { ParamListBase, useNavigation } from "@react-navigation/native"
 
@@ -14,6 +14,11 @@ import utilities from "../../styles/utilities"
 export const Settings = () => {
     const { navigate } = useNavigation<StackNavigationProp<ParamListBase>>()
 
+    const triggerDeleteAccount = () => {
+        console.log("Deleting account...")
+        navigate('Login')
+    }
+
     return (
         <SafeAreaView style={core.container}>
             <View style={[core.header, button.upperLeftButton]}>
@@ -21,7 +26,7 @@ export const Settings = () => {
                 <Text style={[typo.header, typo.header1, utilities.marginLeftSm]}>Settings</Text>
             </View>
             <View>
-                <Text>Dark mode</Text>
+                <Button color={colors.actions.error} onPress={triggerDeleteAccount} title="Delete Account"/>
             </View>
         </SafeAreaView>
     )
